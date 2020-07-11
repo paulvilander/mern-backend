@@ -22,3 +22,7 @@ EventSchema.virtual("thumbnail_url").get(function(){ return this.thumbnail})
 //Exportamos el modelo
 
 module.exports = mongoose.model('Event', EventSchema)
+
+
+
+

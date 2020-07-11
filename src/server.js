@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 8000
 
 const app = express()
 const server = http.Server(app)
-const io = socketio(server)
+const io = socketio(server,{origins: '*:*'})
 
 if (process.env.NODE_ENV !== 'production') {
 	require('dotenv').config()
@@ -35,7 +35,7 @@ io.on('connection', socket => {
 	connectUsers[user] = socket.id
 })
 
-//app.use()
+
 app.use((req, res, next) => {
 	req.io = io
 	req.connectUsers = connectUsers

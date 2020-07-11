@@ -17,15 +17,14 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 try {
-	const MongoClient = require("mongodb").MongoClient;
-	const client =  new MongoClient(process.env.MONGO_DB_CONNECTION,{ 
-		useNewUrlParser: true});
-	client.connect();
-    mongoose.connection.once('open', () => { console.log('MongoDB Connected'); });
-   
-
+	
+	mongoose.connect(process.env.MONGO_DB_CONNECTION, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+	})
+	console.log('MongoDb connected successfully!')
 } catch (error) {
-	mongoose.connection.on('error', (err) => { console.log('MongoDB connection error: ', err); }); 
+	console.log(error)
 }
 
 const connectUsers = {}
